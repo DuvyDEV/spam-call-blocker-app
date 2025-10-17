@@ -18,8 +18,34 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        create("release") {
+            val keystorePath = (project.findProperty("RELEASE_STORE_FILE") as? String)
+                ?: System.getenv("ANDROID_KEYSTORE_FILE")
+
+            if (!keystorePath.isNullOrBlank()) {
+                val storeFileCandidate = rootProject.file(keystorePath)
+                if (storeFileCandidate.exists()) {
+                    storeFile = storeFileCandidate
+                    storePassword = (project.findProperty("RELEASE_STORE_PASSWORD") as? String)
+                        ?: System.getenv("ANDROID_KEYSTORE_PASSWORD")
+                    keyAlias = (project.findProperty("RELEASE_KEY_ALIAS") as? String)
+                        ?: System.getenv("ANDROID_KEY_ALIAS")
+                    keyPassword = (project.findProperty("RELEASE_KEY_PASSWORD") as? String)
+                        ?: System.getenv("ANDROID_KEY_PASSWORD")
+                }
+            }
+        }
+    }
+
     buildTypes {
         release {
+            signingConfig = if (signingConfigs.getByName("release").storeFile != null) {
+                signingConfigs.getByName("release")
+            } else {
+                signingConfigs.getByName("debug")
+            }
+
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(
