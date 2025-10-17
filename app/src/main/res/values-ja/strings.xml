@@ -33,38 +33,17 @@
   <string name="donate">寄付</string>
   <!-- Preferences Sections -->
   <string name="pref_category_general_blocking">一般</string>
-  <string name="pref_category_unknown_phone_api">Unknownphone API 🌐</string>
-  <string name="pref_category_tellows_api">Tellows API 🌐</string>
-  <string name="pref_category_truecaller_api">Truecaller API 🌐</string>
-  <string name="pref_category_scrapers_es">Scrapers 🇪🇸</string>
-  <string name="pref_category_spam_filters">スパム電話番号のフィルタ</string>
+  <string name="pref_category_remote_api">スパムデータベース API 🌐</string>
   <string name="pref_category_other_options">その他のブロックオプション</string>
   <string name="pref_category_notifications">通知</string>
   <!-- General Blocking Settings -->
   <string name="pref_enable_blocking_title">ブロックを有効化</string>
   <string name="pref_enable_blocking_summary">通話のブロック機能を有効化または無効化します</string>
   <!-- API Unknownphone -->
-  <string name="pref_filter_lista_spam_title">Unknownphone API</string>
-  <string name="pref_filter_lista_spam_summary">(推奨) unknownphone.com API にリストされているスパムからの着信をブロックします</string>
-  <string name="pref_filter_lista_spam_api_language_title">unknownphone.com API の言語</string>
-  <string name="pref_filter_lista_spam_api_language_summary">unknownphone.com API で検索する言語を選択してください (結果に影響)</string>
-  <!-- API Tellows -->
-  <string name="pref_filter_tellows_title">Tellows API</string>
-  <string name="pref_filter_tellows_summary">(推奨) Tellows API にリストされているスパムからの着信をブロックします</string>
-  <string name="pref_filter_tellows_api_country_title">Tellows API の国</string>
-  <string name="pref_filter_tellows_api_country_summary">Tellows API で検索する国を選択してください (結果に影響)</string>
-  <!-- API Truecaller -->
-  <string name="pref_filter_truecaller_title">Truecaller API</string>
-  <string name="pref_filter_truecaller_summary">(推奨) Truecaller API によって識別されたスパムからの着信をブロックします</string>
-  <string name="pref_filter_truecaller_api_country_title">Truecaller API の国</string>
-  <string name="pref_filter_truecaller_api_country_summary">Truecaller API で検索する国を選択してください (結果に影響)</string>
-  <!-- Spam Number Filters -->
-  <string name="pref_filter_lista_spam_scraper_title">listaspam.com Scraper</string>
-  <string name="pref_filter_lista_spam_scraper_summary">(非推奨) listaspam.es のウェブサイトに掲載されているスパムからの着信をブロックします</string>
-  <string name="pref_filter_responder_o_no_title">responderono.es Scraper</string>
-  <string name="pref_filter_responder_o_no_summary">responderono.es のウェブサイトに掲載されているスパムからの着信をブロックします</string>
-  <string name="pref_filter_cleverdialer_title">cleverdialer.es Scraper</string>
-  <string name="pref_filter_cleverdialer_summary">cleverdialer.es のウェブサイトに掲載されているスパムからの着信をブロックします</string>
+  <string name="pref_filter_remote_api_title">RedRoot スパムデータベース</string>
+  <string name="pref_filter_remote_api_summary">RedRoot のスパムデータベースを利用して既知の迷惑電話を自動的にブロックします</string>
+  <string name="pref_block_suspicious_numbers_title">疑わしい番号もブロックする</string>
+  <string name="pref_block_suspicious_numbers_summary">確定したスパムだけでなく、疑わしい番号もブロックします</string>
   <!-- Other Blocking Options -->
   <string name="pref_block_non_contacts_title">連絡先に未登録の番号をブロックする</string>
   <string name="pref_block_non_contacts_summary">連絡先に登録されていない電話番号からの着信をブロックします</string>
@@ -80,8 +59,6 @@
   <string name="pref_show_notification_title">ブロック時に通知を表示する</string>
   <string name="pref_show_notification_summary">着信がブロックされたときに通知を表示します</string>
   <!-- Call item actions  -->
-  <string name="open_in_lista_spam_com">ListaSpam を開く</string>
-  <string name="open_in_unknown_phone_com">UnknownPhone を開く</string>
   <string name="search_in_google">Google で検索</string>
   <string name="block">ブロック</string>
   <string name="add_to_whitelist">ホワイトリストに追加</string>
@@ -110,23 +87,15 @@
   <string name="report_title">電話番号を報告する</string>
   <string name="report_label">理由を説明してください</string>
   <string name="report_hint">簡単な説明</string>
-  <string name="where_to_report">どこに報告しますか？</string>
+  <string name="report_info_message">報告すると個人のブロックリストが更新されます。スパムとしてマークすると番号をブロックし、安全としてマークするとホワイトリストに追加します。</string>
   <string name="report_spam">スパム</string>
   <string name="report_not_spam">スパムではない</string>
   <string name="accept">送信</string>
   <string name="cancel">キャンセル</string>
   <string name="report_validation_message">少なくとも 2 つの単語と 5 文字を含める必要があります。</string>
   <string name="report_radio_validation">スパムかどうかを選択してください。</string>
-  <string name="report_success_prefix">報告先</string>
-  <string name="and">と</string>
-  <string name="report_failure">報告を送信できませんでした</string>
-  <string name="select_at_least_one_provider">少なくとも 1 つのプロバイダーを選択してください</string>
-  <string name="reported_to_unknown_phone">UnknownPhone</string>
-  <string name="reported_to_tellows">Tellows</string>
-  <string name="reported_to_truecaller">TrueCaller</string>
-  <string name="truecaller_prefix_repository">TrueCaller (%1$s の接頭辞リポジトリ)</string>
-  <string name="truecaller_default_repository">TrueCaller (デフォルトの接頭辞リポジトリ)</string>
-  <string name="provider_repository_format">%1$s (%2$sのリポジトリ)</string>
+  <string name="report_local_spam_confirmation">番号をスパムとしてブロックしました。コメント: %1$s</string>
+  <string name="report_local_safe_confirmation">番号をホワイトリストに追加しました。コメント: %1$s</string>
   <string name="unknown_value">不明</string>
   <!-- Import/export -->
   <string name="preferences_import_success">設定が正常にインポートされました</string>

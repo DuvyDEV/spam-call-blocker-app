@@ -23,10 +23,7 @@ Here are some screenshots of the Call Blocker App in action:
   - Block calls from numbers not in contacts
   - Block international calls
 
-- **International Phone Number Lookup**: Multi-source verification using:
-  - UnknownPhone API
-  - Tellows API
-  - TrueCaller API
+- **International Phone Number Lookup**: Real-time verification powered by the RedRoot Spam Call Blocker API.
 - **STIR/SHAKEN Verification**: Support for blocking calls based on STIR/SHAKEN levels.
 - **Auto-Mute Option**: Choose to automatically mute incoming spam calls instead of blocking them completely.
 - **Report Dialog**: Built-in system to report suspicious or safe numbers.

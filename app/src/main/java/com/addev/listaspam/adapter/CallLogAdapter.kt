@@ -43,8 +43,6 @@ class CallLogAdapter(
 
     companion object {
         const val GOOGLE_URL_TEMPLATE = "https://www.google.com/search?q=%s"
-        const val LISTA_SPAM_URL_TEMPLATE = "https://www.listaspam.com/busca.php?Telefono=%s"
-        const val UNKNOWN_PHONE_URL_TEMPLATE = "https://www.unknownphone.com/phone/%s"
     }
 
     private val locale = Locale.getDefault()
@@ -175,16 +173,6 @@ class CallLogAdapter(
                             true
                         }
 
-                        R.id.open_in_lista_spam_action -> {
-                            openInListaSpam(number)
-                            true
-                        }
-
-                        R.id.open_in_unknown_phone_action -> {
-                            openInUnknownPhone(number)
-                            true
-                        }
-
                         R.id.whitelist_action -> {
                             if (isWhitelisted) {
                                 removeWhitelistNumber(context, number)
@@ -273,18 +261,6 @@ class CallLogAdapter(
             context.getString(R.string.number_copied_to_clipboard),
             Toast.LENGTH_SHORT
         ).show()
-    }
-
-    private fun openInListaSpam(number: String) {
-        val url = String.format(LISTA_SPAM_URL_TEMPLATE, number)
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-        context.startActivity(intent)
-    }
-
-    private fun openInUnknownPhone(number: String) {
-        val url = String.format(UNKNOWN_PHONE_URL_TEMPLATE, number)
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-        context.startActivity(intent)
     }
 
     private fun searchAction(number: String) {

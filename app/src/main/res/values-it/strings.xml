@@ -35,11 +35,7 @@
 
     <!-- Preferences Sections -->
     <string name="pref_category_general_blocking">Generale</string>
-    <string name="pref_category_unknown_phone_api">Unknownphone API 🌐</string>
-    <string name="pref_category_tellows_api">Tellows API 🌐</string>
-    <string name="pref_category_truecaller_api">Truecaller API 🌐</string>
-    <string name="pref_category_scrapers_es">Scrapers 🇪🇸</string>
-    <string name="pref_category_spam_filters">Filtri per i numeri di spam</string>
+    <string name="pref_category_remote_api">API database spam 🌐</string>
     <string name="pref_category_other_options">Altre opzioni di blocco</string>
     <string name="pref_category_notifications">Notifiche</string>
 
@@ -47,36 +43,12 @@
     <string name="pref_enable_blocking_title">Abilita blocco</string>
     <string name="pref_enable_blocking_summary">Abilita o disabilita la funzionalità di blocco delle chiamate</string>
 
-    <!-- API Unknownphone -->
-    <string name="pref_filter_lista_spam_title">API Unknownphone</string>
-    <string name="pref_filter_lista_spam_summary">(Consigliato) Blocca le chiamate dai numeri spam elencati nell\'API di unknownphone.com</string>
+    <!-- Remote API -->
+    <string name="pref_filter_remote_api_title">Database spam RedRoot</string>
+    <string name="pref_filter_remote_api_summary">Usa il database RedRoot per bloccare automaticamente gli spammer conosciuti</string>
 
-    <string name="pref_filter_lista_spam_api_language_title">Lingua unknownphone.com API</string>
-    <string name="pref_filter_lista_spam_api_language_summary">Scegli il Paese in cui effettuare le ricerche nell\'API unknownphone.com (influisce sui risultati)</string>
-
-    <!-- API Tellows -->
-    <string name="pref_filter_tellows_title">Tellows API</string>
-    <string name="pref_filter_tellows_summary">(Consigliato) Blocca le chiamate dai numeri spam elencati nell\'API di Tellows</string>
-
-    <string name="pref_filter_tellows_api_country_title">Paese Tellows API</string>
-    <string name="pref_filter_tellows_api_country_summary">Scegli il Paese in cui effettuare le ricerche nell\'API Tellows (influisce sui risultati)</string>
-
-    <!-- API Truecaller -->
-    <string name="pref_filter_truecaller_title">Truecaller API</string>
-    <string name="pref_filter_truecaller_summary">(Consigliato) Blocca le chiamate dai numeri spam elencati nell\'API di Truecaller</string>
-
-    <string name="pref_filter_truecaller_api_country_title">Paese Truecaller API</string>
-    <string name="pref_filter_truecaller_api_country_summary">Scegli il Paese in cui effettuare le ricerche nell\'API Truecaller (influisce sui risultati)</string>
-
-    <!-- Spam Number Filters -->
-    <string name="pref_filter_lista_spam_scraper_title">Scraper listaspam.com</string>
-    <string name="pref_filter_lista_spam_scraper_summary">(Deprecato) Blocca le chiamate dai numeri spam elencati sul sito listaspam.es</string>
-
-    <string name="pref_filter_responder_o_no_title">Scraper responderono.es</string>
-    <string name="pref_filter_responder_o_no_summary">Blocca le chiamate dai numeri spam elencati sul sito responderono.es</string>
-
-    <string name="pref_filter_cleverdialer_title">Scraper cleverdialer.es</string>
-    <string name="pref_filter_cleverdialer_summary">Blocca le chiamate dai numeri spam elencati sul sito cleverdialer.es</string>
+    <string name="pref_block_suspicious_numbers_title">Blocca i numeri sospetti</string>
+    <string name="pref_block_suspicious_numbers_summary">Blocca anche i numeri contrassegnati come sospetti oltre allo spam confermato</string>
 
     <!-- Other Blocking Options -->
     <string name="pref_block_non_contacts_title">Blocca Non Contatti</string>
@@ -99,8 +71,6 @@
     <string name="pref_show_notification_summary">Visualizza una notifica quando una chiamata viene bloccata</string>
 
     <!-- Call item actions  -->
-    <string name="open_in_lista_spam_com">Apri in ListaSpam</string>
-    <string name="open_in_unknown_phone_com">Apri in UnknownPhone</string>
     <string name="search_in_google">Cerca su Google</string>
     <string name="block">Blocca</string>
     <string name="add_to_whitelist">Aggiungi alla lista bianca</string>
@@ -132,23 +102,15 @@
     <string name="report_title">Segnala Numero</string>
     <string name="report_label">Descrivi il motivo</string>
     <string name="report_hint">Breve spiegazione</string>
-    <string name="where_to_report">Dove vuoi segnalarlo?</string>
+    <string name="report_info_message">Le segnalazioni aggiornano la tua lista personale. Segna spam per bloccare il numero o segna sicuro per aggiungerlo alla whitelist.</string>
     <string name="report_spam">Si tratta di spam</string>
     <string name="report_not_spam">NON si tratta di spam</string>
     <string name="accept">Invia</string>
     <string name="cancel">Annulla</string>
     <string name="report_validation_message">Deve contenere almeno 2 parole e 5 lettere.</string>
     <string name="report_radio_validation">Per favore scegli se si tratta di spam o meno.</string>
-    <string name="report_success_prefix">Segnalazione inviata a</string>
-    <string name="and">e</string>
-    <string name="report_failure">Impossibile inviare la segnalazione</string>
-    <string name="select_at_least_one_provider">Seleziona almeno un provider</string>
-    <string name="reported_to_unknown_phone">UnknownPhone</string>
-    <string name="reported_to_tellows">Tellows</string>
-    <string name="reported_to_truecaller">TrueCaller</string>
-    <string name="truecaller_prefix_repository">TrueCaller (prefisso repository %1$s)</string>
-    <string name="truecaller_default_repository">TrueCaller (prefisso repository default)</string>
-    <string name="provider_repository_format">%1$s (repository %2$s)</string>
+    <string name="report_local_spam_confirmation">Numero contrassegnato come spam e bloccato. Commento: %1$s</string>
+    <string name="report_local_safe_confirmation">Numero aggiunto alla whitelist. Commento: %1$s</string>
     <string name="unknown_value">Sconosciuto</string>
 
 

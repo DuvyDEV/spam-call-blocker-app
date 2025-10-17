@@ -11,7 +11,6 @@ import android.os.Looper
 import android.provider.ContactsContract
 import android.telecom.Call
 import android.telecom.TelecomManager
-import android.telephony.SubscriptionManager
 import android.telephony.TelephonyManager
 import android.widget.Toast
 import androidx.annotation.RequiresPermission
@@ -24,13 +23,7 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withContext
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import org.jsoup.Jsoup
-import java.io.IOException
 import java.util.Locale
-import java.util.logging.Logger
 
 /**
  * Utility class for handling spam number checks and notifications.
@@ -226,22 +219,16 @@ class SpamUtils {
     private fun buildSpamCheckers(context: Context): List<suspend (String) -> Boolean> {
         val spamCheckers = mutableListOf<suspend (String) -> Boolean>()
 
-        val listaSpamApi = shouldFilterWithListaSpamApi(context)
-        if (listaSpamApi) {
+        val remoteApiEnabled = shouldFilterWithRemoteApi(context)
+        if (remoteApiEnabled) {
+            val blockSuspicious = shouldBlockSuspiciousNumbers(context)
             spamCheckers.add { number ->
-                ApiUtils.checkListaSpamApi(number, getListaSpamApiLang(context) ?: "EN")
-            }
-        }
-        val tellowsApi = shouldFilterWithTellowsApi(context)
-        if (tellowsApi) {
-            spamCheckers.add { number ->
-                ApiUtils.checkTellowsSpamApi(number, getTellowsApiCountry(context) ?: "us")
-            }
-        }
-        val truecallerApi = shouldFilterWithTruecallerApi(context)
-        if (truecallerApi) {
-            spamCheckers.add { number ->
-                ApiUtils.checkTruecallerSpamApi(number, getTruecallerApiCountry(context) ?: "US")
+                val response = ApiUtils.fetchRiskLevel(number)
+                when (response?.riskLevel) {
+                    ApiUtils.RiskLevel.SPAM -> true
+                    ApiUtils.RiskLevel.SUSPICIOUS -> blockSuspicious
+                    else -> false
+                }
             }
         }
         return spamCheckers
