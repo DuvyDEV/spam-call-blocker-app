@@ -21,7 +21,7 @@
             android:id="@+id/messageEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/report_label"
+            android:hint="@string/report_hint"
             android:inputType="textMultiLine"
             android:minLines="1"
             android:autofillHints="none" />
@@ -56,45 +56,11 @@
             android:layout_height="16dp" />
 
         <TextView
-            android:id="@+id/reportTargetsTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/where_to_report"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textStyle="bold"
-            android:layout_marginBottom="8dp" />
-
-        <CheckBox
-            android:id="@+id/checkboxUnknownPhone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="UnknownPhone" />
-
-        <CheckBox
-            android:id="@+id/checkboxTellows"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="Tellows" />
-
-        <CheckBox
-            android:id="@+id/checkboxTruecaller"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="Truecaller" />
-
-        <View
+            android:id="@+id/reportInfo"
             android:layout_width="match_parent"
-            android:layout_height="20dp" />
-
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyleLarge"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:visibility="gone" />
+            android:text="@string/report_info_message"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
     </LinearLayout>
 </ScrollView>

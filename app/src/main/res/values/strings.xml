@@ -35,11 +35,7 @@
 
     <!-- Preferences Sections -->
     <string name="pref_category_general_blocking">General</string>
-    <string name="pref_category_unknown_phone_api">Unknownphone API 🌐</string>
-    <string name="pref_category_tellows_api">Tellows API 🌐</string>
-    <string name="pref_category_truecaller_api">Truecaller API 🌐</string>
-    <string name="pref_category_scrapers_es">Scrapers 🇪🇸</string>
-    <string name="pref_category_spam_filters">Spam Number Filters</string>
+    <string name="pref_category_remote_api">Spam Database API 🌐</string>
     <string name="pref_category_other_options">Other Blocking Options</string>
     <string name="pref_category_notifications">Notifications</string>
 
@@ -47,36 +43,12 @@
     <string name="pref_enable_blocking_title">Enable Blocking</string>
     <string name="pref_enable_blocking_summary">Enable or disable call blocking functionality</string>
 
-    <!-- API Unknownphone -->
-    <string name="pref_filter_lista_spam_title">API Unknownphone</string>
-    <string name="pref_filter_lista_spam_summary">(Recommended) Blocks calls from spam numbers listed in unknownphone.com API</string>
+    <!-- Remote API -->
+    <string name="pref_filter_remote_api_title">RedRoot spam database</string>
+    <string name="pref_filter_remote_api_summary">Use the RedRoot spam database to automatically block known spam callers</string>
 
-    <string name="pref_filter_lista_spam_api_language_title">unknownphone.com API Language</string>
-    <string name="pref_filter_lista_spam_api_language_summary">Select the language for searches in the unknownphone.com API (affects results)</string>
-
-    <!-- API Tellows -->
-    <string name="pref_filter_tellows_title">Tellows API</string>
-    <string name="pref_filter_tellows_summary">(Recommended) Blocks calls from spam numbers listed in the Tellows API</string>
-
-    <string name="pref_filter_tellows_api_country_title">Tellows API Country</string>
-    <string name="pref_filter_tellows_api_country_summary">Select the country for searches in the Tellows API (affects results)</string>
-
-    <!-- API Truecaller -->
-    <string name="pref_filter_truecaller_title">Truecaller API</string>
-    <string name="pref_filter_truecaller_summary">(Recommended) Blocks calls from spam numbers identified by Truecaller API</string>
-
-    <string name="pref_filter_truecaller_api_country_title">Truecaller API Country</string>
-    <string name="pref_filter_truecaller_api_country_summary">Select the country for searches in the Truecaller API (affects results)</string>
-
-    <!-- Spam Number Filters -->
-    <string name="pref_filter_lista_spam_scraper_title">listaspam.com Scraper</string>
-    <string name="pref_filter_lista_spam_scraper_summary">(Deprecated) Blocks calls from spam numbers listed on listaspam.es website</string>
-
-    <string name="pref_filter_responder_o_no_title">responderono.es Scraper</string>
-    <string name="pref_filter_responder_o_no_summary">Blocks calls from spam numbers listed on responderono.es website</string>
-
-    <string name="pref_filter_cleverdialer_title">cleverdialer.es Scraper</string>
-    <string name="pref_filter_cleverdialer_summary">Blocks calls from spam numbers listed on cleverdialer.es website</string>
+    <string name="pref_block_suspicious_numbers_title">Block suspicious numbers</string>
+    <string name="pref_block_suspicious_numbers_summary">Also block numbers flagged as suspicious instead of confirmed spam</string>
 
     <!-- Other Blocking Options -->
     <string name="pref_block_non_contacts_title">Block Non-Contacts</string>
@@ -99,8 +71,6 @@
     <string name="pref_show_notification_summary">Display a notification when a call is blocked</string>
 
     <!-- Call item actions  -->
-    <string name="open_in_lista_spam_com">Open in ListaSpam</string>
-    <string name="open_in_unknown_phone_com">Open in UnknownPhone</string>
     <string name="search_in_google">Search in Google</string>
     <string name="block">Block</string>
     <string name="add_to_whitelist">Add to whitelist</string>
@@ -132,23 +102,15 @@
     <string name="report_title">Report Number</string>
     <string name="report_label">Describe the reason</string>
     <string name="report_hint">Brief explanation</string>
-    <string name="where_to_report">Where do you want to report?</string>
+    <string name="report_info_message">Reports update your personal blocklist. Mark spam to block the number or mark safe to whitelist it.</string>
     <string name="report_spam">It is spam</string>
     <string name="report_not_spam">It is NOT spam</string>
     <string name="accept">Submit</string>
     <string name="cancel">Cancel</string>
     <string name="report_validation_message">Must contain at least 2 words and 5 letters.</string>
     <string name="report_radio_validation">Please select whether it is spam or not.</string>
-    <string name="report_success_prefix">Report sent to</string>
-    <string name="and">and</string>
-    <string name="report_failure">Report could not be sent</string>
-    <string name="select_at_least_one_provider">Select at least one provider</string>
-    <string name="reported_to_unknown_phone">UnknownPhone</string>
-    <string name="reported_to_tellows">Tellows</string>
-    <string name="reported_to_truecaller">TrueCaller</string>
-    <string name="truecaller_prefix_repository">TrueCaller (%1$s prefix repository)</string>
-    <string name="truecaller_default_repository">TrueCaller (default prefix repository)</string>
-    <string name="provider_repository_format">%1$s (%2$s repository)</string>
+    <string name="report_local_spam_confirmation">Number marked as spam and blocked. Comment: %1$s</string>
+    <string name="report_local_safe_confirmation">Number added to whitelist. Comment: %1$s</string>
     <string name="unknown_value">Unknown</string>
 
 

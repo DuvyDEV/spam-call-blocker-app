@@ -2,7 +2,6 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- General Blocking Settings -->
     <PreferenceCategory
         android:title="@string/pref_category_general_blocking"
         app:iconSpaceReserved="false">
@@ -16,71 +15,27 @@
 
     </PreferenceCategory>
 
-    <!-- Spam Number Filters -->
     <PreferenceCategory
-        android:title="@string/pref_category_unknown_phone_api"
+        android:title="@string/pref_category_remote_api"
         app:iconSpaceReserved="false">
 
         <CheckBoxPreference
             android:defaultValue="true"
-            android:key="pref_filter_lista_spam"
-            android:summary="@string/pref_filter_lista_spam_summary"
-            android:title="@string/pref_filter_lista_spam_title"
+            android:key="pref_filter_remote_api"
+            android:summary="@string/pref_filter_remote_api_summary"
+            android:title="@string/pref_filter_remote_api_title"
             app:iconSpaceReserved="false" />
-
-        <ListPreference
-            android:entries="@array/language_names"
-            android:entryValues="@array/language_values"
-            android:key="pref_language"
-            android:summary="@string/pref_filter_lista_spam_api_language_summary"
-            android:title="@string/pref_filter_lista_spam_api_language_title"
-            app:iconSpaceReserved="false" />
-
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        android:title="@string/pref_category_tellows_api"
-        app:iconSpaceReserved="false">
 
         <CheckBoxPreference
-            android:defaultValue="true"
-            android:key="pref_tellows_api"
-            android:summary="@string/pref_filter_tellows_summary"
-            android:title="@string/pref_filter_tellows_title"
-            app:iconSpaceReserved="false" />
-
-        <ListPreference
-            android:entries="@array/entries_region_preference"
-            android:entryValues="@array/entryvalues_region_preference"
-            android:key="pref_tellows_country"
-            android:summary="@string/pref_filter_tellows_api_country_summary"
-            android:title="@string/pref_filter_tellows_api_country_title"
+            android:defaultValue="false"
+            android:dependency="pref_filter_remote_api"
+            android:key="pref_block_suspicious_numbers"
+            android:summary="@string/pref_block_suspicious_numbers_summary"
+            android:title="@string/pref_block_suspicious_numbers_title"
             app:iconSpaceReserved="false" />
 
     </PreferenceCategory>
 
-    <PreferenceCategory
-        android:title="@string/pref_category_truecaller_api"
-        app:iconSpaceReserved="false">
-
-        <CheckBoxPreference
-            android:defaultValue="true"
-            android:key="pref_truecaller_api"
-            android:summary="@string/pref_filter_truecaller_summary"
-            android:title="@string/pref_filter_truecaller_title"
-            app:iconSpaceReserved="false" />
-
-        <ListPreference
-            android:entries="@array/truecaller_region_display"
-            android:entryValues="@array/truecaller_region_code"
-            android:key="pref_truecaller_country"
-            android:summary="@string/pref_filter_truecaller_api_country_summary"
-            android:title="@string/pref_filter_truecaller_api_country_title"
-            app:iconSpaceReserved="false" />
-
-    </PreferenceCategory>
-
-    <!-- Other Blocking Options -->
     <PreferenceCategory
         android:title="@string/pref_category_other_options"
         app:iconSpaceReserved="false">
@@ -129,7 +84,6 @@
 
     </PreferenceCategory>
 
-    <!-- Notifications -->
     <PreferenceCategory
         android:title="@string/pref_category_notifications"
         app:iconSpaceReserved="false">

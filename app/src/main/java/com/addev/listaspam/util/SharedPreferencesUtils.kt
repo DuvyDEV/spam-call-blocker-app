@@ -29,32 +29,11 @@ fun shouldBlockHiddenNumbers(context: Context): Boolean =
 fun shouldBlockInternationalNumbers(context: Context): Boolean =
     getBooleanPref(context, "pref_block_international_numbers", false)
 
-fun shouldFilterWithListaSpamApi(context: Context): Boolean =
-    getBooleanPref(context, "pref_filter_lista_spam_api", true)
+fun shouldFilterWithRemoteApi(context: Context): Boolean =
+    getBooleanPref(context, "pref_filter_remote_api", true)
 
-fun getListaSpamApiLang(context: Context): String? =
-    getStringPref(context, "pref_language")?.uppercase()
-
-fun setListaSpamApiLang(context: Context, languageCode: String) =
-    setStringPref(context, "pref_language", languageCode.uppercase())
-
-fun shouldFilterWithTellowsApi(context: Context): Boolean =
-    getBooleanPref(context, "pref_filter_tellows_api", true)
-
-fun shouldFilterWithTruecallerApi(context: Context): Boolean =
-    getBooleanPref(context, "pref_truecaller_api", true)
-
-fun getTellowsApiCountry(context: Context): String? =
-    getStringPref(context, "pref_tellows_country")?.uppercase()
-
-fun setTellowsApiCountry(context: Context, countryCode: String) =
-    setStringPref(context, "pref_tellows_country", countryCode.lowercase())
-
-fun getTruecallerApiCountry(context: Context): String? =
-    getStringPref(context, "pref_truecaller_country")?.uppercase()
-
-fun setTruecallerApiCountry(context: Context, countryCode: String) =
-    setStringPref(context, "pref_truecaller_country", countryCode.uppercase())
+fun shouldBlockSuspiciousNumbers(context: Context): Boolean =
+    getBooleanPref(context, "pref_block_suspicious_numbers", false)
 
 // ...scraper-related preferences removed...
 
