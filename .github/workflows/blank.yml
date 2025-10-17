@@ -5,6 +5,13 @@ on:
     tags:
       - 'v*'
   workflow_dispatch:
+    inputs:
+      tag_name:
+        description: 'Release tag to publish (e.g., v1.2.3)'
+        required: true
+      release_name:
+        description: 'Optional title for the release (defaults to the tag)'
+        required: false
 
 jobs:
   build-release:
@@ -41,9 +48,35 @@ jobs:
           name: app-release-unsigned
           path: dist
 
+      - name: Determine release metadata
+        id: release_meta
+        run: |
+          if [ "${GITHUB_REF_TYPE}" = "tag" ] && [ -n "${GITHUB_REF_NAME}" ]; then
+            echo "tag_name=${GITHUB_REF_NAME}" >> "$GITHUB_OUTPUT"
+            echo "release_name=${GITHUB_REF_NAME}" >> "$GITHUB_OUTPUT"
+          elif [ -n "${INPUT_TAG_NAME}" ]; then
+            echo "tag_name=${INPUT_TAG_NAME}" >> "$GITHUB_OUTPUT"
+            if [ -n "${INPUT_RELEASE_NAME}" ]; then
+              echo "release_name=${INPUT_RELEASE_NAME}" >> "$GITHUB_OUTPUT"
+            else
+              echo "release_name=${INPUT_TAG_NAME}" >> "$GITHUB_OUTPUT"
+            fi
+          else
+            echo "::error::No release tag provided." >&2
+            exit 1
+          fi
+        env:
+          GITHUB_REF_TYPE: ${{ github.ref_type }}
+          GITHUB_REF_NAME: ${{ github.ref_name }}
+          INPUT_TAG_NAME: ${{ github.event.inputs.tag_name }}
+          INPUT_RELEASE_NAME: ${{ github.event.inputs.release_name }}
+
       - name: Publish GitHub Release
         uses: softprops/action-gh-release@v1
         with:
           files: dist/app-release-unsigned.apk
+          tag_name: ${{ steps.release_meta.outputs.tag_name }}
+          name: ${{ steps.release_meta.outputs.release_name }}
+          target_commitish: ${{ github.sha }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
