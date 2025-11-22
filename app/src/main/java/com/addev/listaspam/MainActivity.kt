@@ -6,7 +6,6 @@ import android.app.role.RoleManager
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Bundle
 import com.addev.listaspam.util.PermissionUtils
 import android.text.InputType
@@ -28,6 +27,8 @@ import com.addev.listaspam.util.SpamUtils
 import com.addev.listaspam.util.getBlockedNumbers
 import com.addev.listaspam.util.getCallLogs
 import com.addev.listaspam.util.getWhitelistNumbers
+import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import java.util.Locale
 import androidx.core.net.toUri
 
@@ -37,6 +38,7 @@ class MainActivity : AppCompatActivity(), CallLogAdapter.OnItemChangedListener {
     private var permissionDeniedDialog: AlertDialog? = null
     private var callLogAdapter: CallLogAdapter? = null
     private var recyclerView: RecyclerView? = null
+    private var testNumberFab: ExtendedFloatingActionButton? = null
 
     private val spamUtils = SpamUtils()
 
@@ -49,11 +51,15 @@ class MainActivity : AppCompatActivity(), CallLogAdapter.OnItemChangedListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val toolbar: MaterialToolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
         setupWindowInsets()
         setupIntentLauncher()
 
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView?.layoutManager = LinearLayoutManager(this)
+        testNumberFab = findViewById(R.id.fab_test_number)
+        testNumberFab?.setOnClickListener { showNumberInputDialog() }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

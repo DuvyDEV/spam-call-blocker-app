@@ -14,7 +14,6 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import android.widget.PopupMenu
 import android.widget.TextView
 import android.widget.Toast
@@ -27,6 +26,7 @@ import com.addev.listaspam.util.addNumberToWhitelist
 import com.addev.listaspam.util.removeSpamNumber
 import com.addev.listaspam.util.removeWhitelistNumber
 import com.addev.listaspam.util.saveSpamNumber
+import com.google.android.material.button.MaterialButton
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -76,7 +76,7 @@ class CallLogAdapter(
         private val dateTextView: TextView = itemView.findViewById(R.id.dateTextView)
         private val durationTextView: TextView = itemView.findViewById(R.id.durationTextView)
         private val actionTextView: TextView = itemView.findViewById(R.id.actionTextView)
-        private val overflowMenuButton = itemView.findViewById<ImageButton>(R.id.overflowMenuButton)
+        private val overflowMenuButton = itemView.findViewById<MaterialButton>(R.id.overflowMenuButton)
 
         fun bind(callLog: CallLogEntry, isBlocked: Boolean, isWhitelisted: Boolean = false) {
             val number = callLog.number ?: "Unknown number"
@@ -107,34 +107,25 @@ class CallLogAdapter(
 
             actionTextView.text = action
 
-            if (callLog.type == CallLog.Calls.BLOCKED_TYPE) {
-                actionTextView.setTextColor(
-                    ContextCompat.getColor(
-                        context,
-                        android.R.color.holo_red_light
-                    )
-                )
+            val actionColor = if (callLog.type == CallLog.Calls.BLOCKED_TYPE) {
+                R.color.call_action_blocked
             } else {
-                actionTextView.setTextColor(
-                    ContextCompat.getColor(
-                        context,
-                        android.R.color.darker_gray
-                    )
-                )
+                R.color.call_action_default
             }
+            actionTextView.setTextColor(ContextCompat.getColor(context, actionColor))
 
             when {
                 isBlocked -> numberTextView.setTextColor(
                     ContextCompat.getColor(
                         context,
-                        android.R.color.holo_red_light
+                        R.color.call_action_blocked
                     )
                 )
 
                 isWhitelisted -> numberTextView.setTextColor(
                     ContextCompat.getColor(
                         context,
-                        android.R.color.holo_blue_dark
+                        R.color.call_action_highlight
                     )
                 )
 

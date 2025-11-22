@@ -127,4 +127,7 @@
     <string name="donation_help_development">¡Ayuda a mantener el desarrollo y mantenimiento de esta aplicación!</string>
     <string name="donation_traditional_methods">Apoya mediante métodos tradicionales:</string>
     <string name="donation_crypto_methods">O si lo prefieres, puedes donar con criptomonedas:</string>
+    <string name="donation_paypal">PayPal</string>
+    <string name="donation_buy_me_a_coffee">Invítame un café</string>
+    <string name="more_options">Más opciones</string>
 </resources>

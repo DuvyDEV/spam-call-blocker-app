@@ -5,26 +5,31 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
-import com.google.android.material.card.MaterialCardView
 import androidx.core.view.isNotEmpty
+import androidx.core.widget.TextViewCompat
+import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.color.MaterialColors
 
 class DonationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_donation)
 
-        // Botones de PayPal y BuyMeACoffee
-        findViewById<android.widget.ImageView>(R.id.img_paypal).setOnClickListener {
+        val toolbar: MaterialToolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        toolbar.setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
+
+        findViewById<MaterialButton>(R.id.btn_paypal).setOnClickListener {
             val url = "https://www.paypal.com/donate/?hosted_button_id=3T9XNAPWW36Z2"
             val intent = Intent(Intent.ACTION_VIEW, url.toUri())
             startActivity(intent)
         }
-        findViewById<android.widget.ImageView>(R.id.img_buymeacoffee).setOnClickListener {
+        findViewById<MaterialButton>(R.id.btn_buymeacoffee).setOnClickListener {
             val url = "https://www.buymeacoffee.com/rsiztb3"
             val intent = Intent(Intent.ACTION_VIEW, url.toUri())
             startActivity(intent)
@@ -62,6 +67,7 @@ class DonationActivity : AppCompatActivity() {
                     1f
                 )
             }
+            TextViewCompat.setTextAppearance(label, com.google.android.material.R.style.TextAppearance_Material3_BodyMedium)
             rowContainer.addView(label)
 
             // Create and add the copy button
@@ -74,12 +80,13 @@ class DonationActivity : AppCompatActivity() {
                     ).apply {
                         setMargins(0, 16, 0, 16)
                     }
-                    setBackgroundColor(android.graphics.Color.LTGRAY)
+                    val dividerColor = MaterialColors.getColor(this@DonationActivity, com.google.android.material.R.attr.colorOutlineVariant, android.graphics.Color.LTGRAY)
+                    setBackgroundColor(dividerColor)
                 }
                 container.addView(divider)
             }
 
-            val copyButton = com.google.android.material.button.MaterialButton(this).apply {
+            val copyButton = MaterialButton(this).apply {
                 text = getString(R.string.copy_address)
                 setIconResource(R.drawable.ic_copy_24)
                 iconGravity = com.google.android.material.button.MaterialButton.ICON_GRAVITY_START
