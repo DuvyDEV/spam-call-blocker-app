@@ -24,12 +24,10 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.addev.listaspam.adapter.CallLogAdapter
-import com.addev.listaspam.service.UpdateChecker
 import com.addev.listaspam.util.SpamUtils
 import com.addev.listaspam.util.getBlockedNumbers
 import com.addev.listaspam.util.getCallLogs
 import com.addev.listaspam.util.getWhitelistNumbers
-import com.addev.listaspam.util.isUpdateCheckEnabled
 import java.util.Locale
 import androidx.core.net.toUri
 
@@ -56,10 +54,6 @@ class MainActivity : AppCompatActivity(), CallLogAdapter.OnItemChangedListener {
 
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView?.layoutManager = LinearLayoutManager(this)
-
-        if (isUpdateCheckEnabled(this)) {
-            checkUpdates()
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -95,19 +89,6 @@ class MainActivity : AppCompatActivity(), CallLogAdapter.OnItemChangedListener {
             else -> super.onOptionsItemSelected(item)
         }
     }
-
-    private fun checkUpdates() {
-        Thread {
-            val checker = UpdateChecker(
-                context = this,
-                githubUser = GITHUB_USER,
-                githubRepo = GITHUB_REPO
-            )
-            checker.checkForUpdateSync()
-        }.start()
-    }
-
-
 
     private fun showNumberInputDialog() {
         val builder = AlertDialog.Builder(this)

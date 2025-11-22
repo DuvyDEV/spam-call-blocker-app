@@ -11,19 +11,16 @@ import android.os.Looper
 import android.provider.ContactsContract
 import android.telecom.Call
 import android.telecom.TelecomManager
-import android.telephony.TelephonyManager
 import android.widget.Toast
 import androidx.annotation.RequiresPermission
 import androidx.core.app.ActivityCompat
 import com.addev.listaspam.R
 import com.google.i18n.phonenumbers.PhoneNumberUtil
+import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import java.util.Locale
 
 /**
  * Utility class for handling spam number checks and notifications.
@@ -166,9 +163,7 @@ class SpamUtils {
             }
 
             val spamCheckers: List<suspend (String) -> Boolean> = buildSpamCheckers(context)
-            val isSpam = runBlocking {
-                isSpamRace(spamCheckers, number)
-            }
+            val isSpam = isSpamRace(spamCheckers, number)
 
             if (isSpam) {
                 handleSpamNumber(
@@ -199,21 +194,29 @@ class SpamUtils {
         spamCheckers: List<suspend (String) -> Boolean>,
         number: String
     ): Boolean = coroutineScope {
-        val resultChannel = Channel<Boolean>()
+        if (spamCheckers.isEmpty()) return@coroutineScope false
 
+        val deferredResult = CompletableDeferred<Boolean>()
         val jobs = spamCheckers.map { checker ->
             launch {
                 val result = runCatching { checker(number) }.getOrDefault(false)
-                if (result) resultChannel.send(true)
+                if (result) {
+                    deferredResult.complete(true)
+                }
             }
         }
 
-        val isSpam = resultChannel.receive()
+        val completionJob = launch {
+            jobs.forEach { it.join() }
+            deferredResult.complete(false)
+        }
 
-        // Cancel all other jobs
-        jobs.forEach { it.cancel() }
-
-        return@coroutineScope isSpam
+        try {
+            deferredResult.await()
+        } finally {
+            jobs.forEach { it.cancel() }
+            completionJob.cancel()
+        }
     }
 
     private fun buildSpamCheckers(context: Context): List<suspend (String) -> Boolean> {
