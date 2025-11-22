@@ -20,10 +20,10 @@
         <item name="colorOnSurfaceVariant">@color/md_theme_light_onSurfaceVariant</item>
         <item name="colorOutline">@color/md_theme_light_outline</item>
         <item name="materialAlertDialogTheme">@style/ThemeOverlay.Material3.MaterialAlertDialog</item>
-        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material3</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
     </style>
 
-    <style name="PopupMenuStyle" parent="@style/Widget.Material3.Menu.List">
+    <style name="PopupMenuStyle" parent="@style/Widget.MaterialComponents.PopupMenu">
         <item name="android:textColor">?attr/colorOnSurface</item>
     </style>
 </resources>
